@@ -1,0 +1,1 @@
+import { SemaHome } from "./pages/page-home";
