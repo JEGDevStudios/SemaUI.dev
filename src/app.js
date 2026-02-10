@@ -21,20 +21,21 @@ const outlet = document.getElementById("outlet");
 const router = new Router(outlet);
 
 // Global Theme Handler
-document.addEventListener("toggle-theme", () => {
-	const html = document.documentElement;
-	const current = html.getAttribute("data-theme");
-	const next = current === "dark" ? "light" : "dark";
-	html.setAttribute("data-theme", next);
-	localStorage.setItem("theme", next);
-});
+document.addEventListener(
+	"toggle-theme",
+	() => {
+		const html = document.documentElement;
+		const current = html.getAttribute("data-theme");
+		const next = current === "dark" ? "light" : "dark";
+		html.setAttribute("data-theme", next);
+		localStorage.setItem("theme", next);
+	},
+	{ capture: true },
+);
 
 // Init Theme
-const saved = localStorage.getItem("theme");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-if (saved === "dark" || (!saved && prefersDark)) {
-	document.documentElement.setAttribute("data-theme", "dark");
-}
+const saved = localStorage.getItem("theme") || "light";
+document.documentElement.setAttribute("data-theme", saved);
 
 router.setRoutes([
 	{ path: "/", component: "page-home" },

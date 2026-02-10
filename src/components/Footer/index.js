@@ -12,10 +12,10 @@ export class SemaFooter extends LitElement {
 					Construye bloques minimalistas para web modernas.
 				</p>
 				<ul class="footer-links">
-					<li><a href="/docs">Documentación</a></li>
-					<li><a href="/docs/accordion">Componentes</a></li>
+					<li><a href="/docs" title="Ir a la página de documentación">Documentación</a></li>
+					<li><a href="/docs/accordion" title="Ir a la sección de componentes en la documentación">Componentes</a></li>
 					<li>
-						<a href="https://github.com/JEGDevStudios/Sema-UI"
+						<a href="https://github.com/JEGDevStudios/Sema-UI" title="Ir al repositorio de github"
 							>GitHub
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -41,9 +41,93 @@ export class SemaFooter extends LitElement {
 								</g></svg
 						></a>
 					</li>
+					<li>
+						<a href="https://github.com/JEGDevStudios/Sema-UI" title="Ir a la página de NPM">
+							NPM
+
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								version="1.1"
+								xmlns:xlink="http://www.w3.org/1999/xlink"
+								width="20"
+								height="20"
+								x="0"
+								y="0"
+								viewBox="0 0 24 24"
+								style="enable-background:new 0 0 512 512"
+								xml:space="preserve"
+								class=""
+								style="fill: currentColor"
+							>
+								<g>
+									<linearGradient
+										id="a"
+										x1="-1.1"
+										x2="25.1"
+										y1="5.892"
+										y2="18.108"
+										gradientUnits="userSpaceOnUse"
+									>
+										<stop offset="0" stop-color="#fff" stop-opacity=".2"></stop>
+										<stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+									</linearGradient>
+									<rect
+										width="22"
+										height="22"
+										x="1"
+										y="1"
+										rx=".5"
+										fill="#6b7280"
+										opacity="1"
+										data-original="#000000"
+										class=""
+										style="fill: currentColor"
+									></rect>
+									<path
+										fill="#6b7280"
+										d="M2 2h20v20H2z"
+										opacity="1"
+										data-original="#f44336"
+										class=""
+										style="fill: currentColor"
+									></path>
+									<path
+										d="M18.5 19h-3a.5.5 0 0 1-.5-.5V9h-2v9.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-.5.5z"
+										fill="#6b7280"
+										opacity="1"
+										data-original="#000000"
+										class=""
+									></path>
+									<path
+										fill=""
+										d="M16 18h2V6H6v12h6V8.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5z"
+										opacity="1"
+										data-original=""
+										class=""
+									></path>
+									<rect
+										width="22"
+										height="22"
+										x="1"
+										y="1"
+										fill="url(#a)"
+										rx=".5"
+										opacity="1"
+										data-original="url(#a)"
+										class=""
+									></rect>
+								</g>
+							</svg>
+						</a>
+					</li>
 				</ul>
 				<div class="footer-copy">
-					By <a href="https://www.jegdevstudios.com" title="Echo por JEG Dev Studios">JEG Dev Studios</a>
+					By
+					<a
+						href="https://www.jegdevstudios.com"
+						title="Echo por JEG Dev Studios"
+						>JEG Dev Studios</a
+					>
 					© ${new Date().getFullYear()} Sema UI. Construye con precision.
 				</div>
 			</footer>

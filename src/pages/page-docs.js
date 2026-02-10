@@ -101,11 +101,7 @@ export class SemaDocs extends LitElement {
 	constructor() {
 		super();
 		// Sincronizar con el estado global o localStorage al iniciar
-		this.theme =
-			localStorage.getItem("theme") ||
-			(window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light");
+		this.theme = localStorage.getItem("theme") || "light";
 	}
 
 	connectedCallback() {

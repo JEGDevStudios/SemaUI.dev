@@ -1,10 +1,27 @@
 import { LitElement, html, css } from "lit";
 import "@jegdev/semaui";
 
+const docsList = [
+	{ title: "Introducción", path: "/docs/intro" },
+	{ title: "Instalación", path: "/docs/install" },
+	{ title: "Dark Mode", path: "/docs/theming" },
+	{ title: "Accordion", path: "/docs/accordion" },
+	{ title: "Alerts", path: "/docs/alerts" },
+	{ title: "Breadcrumbs", path: "/docs/breadcrumbs" },
+	{ title: "Button", path: "/docs/button" },
+	{ title: "Card Product", path: "/docs/card-product" },
+	{ title: "Card Feature", path: "/docs/card-feature" },
+	{ title: "Card Info", path: "/docs/card-info" },
+	{ title: "Dropdown", path: "/docs/dropdown" },
+	{ title: "FAQs", path: "/docs/faqs" },
+	{ title: "Input", path: "/docs/input" },
+];
+
 export class UiNavbar extends LitElement {
 	static properties = {
 		theme: { type: String, reflect: true },
 		isMenuOpen: { type: Boolean, state: true },
+		searchQuery: { type: String, state: true },
 	};
 
 	static styles = css`
@@ -13,15 +30,15 @@ export class UiNavbar extends LitElement {
 			position: sticky;
 			top: 0;
 			z-index: 100;
-			--sema-bg: #da2b48;
-			--primary: #ffffff;
-			--border-color: #c01632;
-		}
-
-		:host([theme="dark"]) {
 			--sema-bg: #ffffff;
 			--primary: #da2b48;
 			--border-color: #e5e7eb;
+		}
+
+		:host([theme="dark"]) {
+			--sema-bg: #121212;
+			--primary: #ffffff;
+			--border-color: #333;
 		}
 
 		header {
@@ -54,18 +71,82 @@ export class UiNavbar extends LitElement {
 			display: flex;
 			align-items: center;
 			gap: 0.5rem;
-			background: var(--swiss-gray, #f3f4f6);
-			padding: 0.5rem 1rem;
-			border-radius: 4px;
+			background: #f3f4f6;
+			padding: 0.6rem 1rem;
+			border-radius: 8px;
+			border: 1px solid #e5e7eb;
+			transition: all 0.2s ease;
+			color: #1f2937;
+		}
+		.search-container:hover {
+			background: #e5e7eb;
+		}
+		.search-container:focus-within {
+			background: #ffffff;
+			border-color: #da2b48;
+			box-shadow: 0 0 0 2px rgba(218, 43, 72, 0.1);
 		}
 		.search-container input {
 			border: none;
 			background: transparent;
 			outline: none;
 			font-family: inherit;
-			font-size: 0.875rem;
+			font-size: 0.9rem;
 			color: inherit;
-			width: 200px;
+			width: 240px;
+		}
+		.search-container input::placeholder {
+			color: #9ca3af;
+		}
+		:host([theme="dark"]) .search-container {
+			background: rgba(255, 255, 255, 0.15);
+			color: white;
+			border-color: rgba(255, 255, 255, 0.2);
+		}
+		:host([theme="dark"]) .search-container:hover {
+			background: rgba(255, 255, 255, 0.25);
+		}
+		:host([theme="dark"]) .search-container:focus-within {
+			background: rgba(255, 255, 255, 0.25);
+			border-color: rgba(255, 255, 255, 0.5);
+			box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+		}
+		:host([theme="dark"]) .search-container input::placeholder {
+			color: rgba(255, 255, 255, 0.8);
+		}
+		.search-wrapper {
+			position: relative;
+		}
+		.search-results {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: var(--swiss-gray, #f3f4f6);
+			color: #171212;
+			border: 1px solid var(--border-color);
+			border-radius: 4px;
+			margin-top: 0.5rem;
+			max-height: 300px;
+			overflow-y: auto;
+			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+		}
+		:host([theme="dark"]) .search-results {
+			background: #121212;
+			color: #ffffff;
+			border-color: #333;
+		}
+		.search-item {
+			display: block;
+			padding: 0.75rem 1rem;
+			text-decoration: none;
+			color: inherit;
+			font-size: 0.875rem;
+			cursor: pointer;
+		}
+		.search-item:hover {
+			background: rgba(0, 0, 0, 0.05);
 		}
 		.mobile-menu {
 			display: none;
@@ -96,11 +177,7 @@ export class UiNavbar extends LitElement {
 
 	constructor() {
 		super();
-		this.theme =
-			localStorage.getItem("theme") ||
-			(window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light");
+		this.theme = localStorage.getItem("theme") || "light";
 	}
 
 	connectedCallback() {
@@ -116,6 +193,20 @@ export class UiNavbar extends LitElement {
 	_handleThemeUpdate = () => {
 		this.theme = document.documentElement.getAttribute("data-theme") || "light";
 	};
+
+	_handleSearch = (e) => {
+		this.searchQuery = e.target.value;
+	};
+
+	_clearSearch = () => {
+		this.searchQuery = "";
+	};
+
+	_getFilteredDocs() {
+		if (!this.searchQuery) return [];
+		const term = this.searchQuery.toLowerCase();
+		return docsList.filter((doc) => doc.title.toLowerCase().includes(term));
+	}
 
 	render() {
 		const iconNight = html`<svg
@@ -185,9 +276,35 @@ export class UiNavbar extends LitElement {
 					<img src="/src/assets/logo.webp" width="30" alt="Sema UI Logo" />
 					<span class="logo-text">SEMA UI</span>
 				</a>
-				<div class="search-container">
-					${iconSearch}
-					<input placeholder="Buscar..." />
+				<div class="search-wrapper">
+					<div class="search-container">
+						${iconSearch}
+						<input
+							placeholder="Buscar..."
+							.value="${this.searchQuery || ""}"
+							@input="${this._handleSearch}"
+						/>
+					</div>
+					${this.searchQuery
+						? html`
+								<div class="search-results">
+									${this._getFilteredDocs().map(
+										(doc) => html`
+											<a
+												href="${doc.path}"
+												class="search-item"
+												@click="${this._clearSearch}"
+											>
+												${doc.title}
+											</a>
+										`,
+									)}
+									${this._getFilteredDocs().length === 0
+										? html`<div class="search-item">No hay resultados</div>`
+										: ""}
+								</div>
+							`
+						: ""}
 				</div>
 				<nav class="nav-links ${this.isMenuOpen ? "open" : ""}">
 					<sema-button kind="link" url="/docs" mode="nav-link"

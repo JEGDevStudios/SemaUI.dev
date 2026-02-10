@@ -138,11 +138,7 @@ export class SemaButtonPage extends LitElement {
 	constructor() {
 		super();
 		// Sincronizar con el estado global o localStorage al iniciar
-		this.theme =
-			localStorage.getItem("theme") ||
-			(window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light");
+		this.theme = localStorage.getItem("theme") || "light";
 	}
 
 	connectedCallback() {
@@ -269,10 +265,14 @@ export class SemaButtonPage extends LitElement {
 						>Ir a Google</sema-button
 					>
 				</div>
-				<sema-code-snippet>&lt;sema-button kind="link" size="lg" url="https://google.com" target="_blank"&gt; Ir a Google &lt;/sema-button&gt;</sema-code-snippet>
+				<sema-code-snippet
+					>&lt;sema-button kind="link" size="lg" url="https://google.com"
+					target="_blank"&gt; Ir a Google
+					&lt;/sema-button&gt;</sema-code-snippet
+				>
 
 				<h3>3. Modos (Modes)</h3>
-				
+
 				<p>
 					El componente ofrece variantes visuales para adaptarse a diferentes
 					contextos.
@@ -292,25 +292,37 @@ export class SemaButtonPage extends LitElement {
 						>Docs</sema-button
 					>
 				</div>
-				<sema-code-snippet>&lt;sema-button kind="link" mode="nav-link" url="/docs"&gt; Docs &lt;/sema-button&gt;</sema-code-snippet>
+				<sema-code-snippet
+					>&lt;sema-button kind="link" mode="nav-link" url="/docs"&gt; Docs
+					&lt;/sema-button&gt;</sema-code-snippet
+				>
 
 				<h4>Outline</h4>
 				<div class="preview">
 					<sema-button mode="outline">Outline</sema-button>
 				</div>
-				<sema-code-snippet>lt;sema-button mode="outline"&gt;Outline&lt;/sema-button&gt;</sema-code-snippet>
+				<sema-code-snippet
+					>lt;sema-button
+					mode="outline"&gt;Outline&lt;/sema-button&gt;</sema-code-snippet
+				>
 
 				<h4>Ghost</h4>
 				<div class="preview">
 					<sema-button mode="ghost">Ghost</sema-button>
 				</div>
-				<sema-code-snippet>&lt;sema-button mode="ghost"&gt;Ghost&lt;/sema-button&gt;</sema-code-snippet>
+				<sema-code-snippet
+					>&lt;sema-button
+					mode="ghost"&gt;Ghost&lt;/sema-button&gt;</sema-code-snippet
+				>
 
 				<h4>Menu</h4>
 				<div class="preview">
 					<sema-button mode="menu">☰</sema-button>
 				</div>
-				<sema-code-snippet>&lt;sema-button mode="menu"&gt;☰&lt;/sema-button&gt;</sema-code-snippet>
+				<sema-code-snippet
+					>&lt;sema-button
+					mode="menu"&gt;☰&lt;/sema-button&gt;</sema-code-snippet
+				>
 
 				<h3>4. Tamaños (Size)</h3>
 				<p>

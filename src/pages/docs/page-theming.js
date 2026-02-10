@@ -103,11 +103,7 @@ export class SemaThemingPage extends LitElement {
 
 	constructor() {
 		super();
-		this.theme =
-			localStorage.getItem("theme") ||
-			(window.matchMedia("(prefers-color-scheme: dark)").matches
-				? "dark"
-				: "light");
+		this.theme = localStorage.getItem("theme") || "light";
 	}
 
 	connectedCallback() {
