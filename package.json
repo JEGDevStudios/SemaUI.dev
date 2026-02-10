@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jegdev/semaui": "^0.0.1-beta.7",
+    "@jegdev/semaui": "^0.0.2-alpha.1",
     "@vaadin/router": "^2.0.1",
     "lit": "^3.3.1"
   },

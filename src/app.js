@@ -1,14 +1,12 @@
 import { Router } from "@vaadin/router";
 import "./components/NavBar";
 import "./components/Footer";
-import "./components/SemaCodeSnippet/index.js";
-import "./components/SemaCardFeature/index.js";
-import "./components/SemaCardInfo/index.js";
 import "./pages/page-home.js";
 import "./pages/page-docs.js";
 import "./pages/docs/page-intro.js"; // Asegúrate de importar la nueva vista
 import "./pages/docs/page-install.js";
 import "./pages/docs/page-accordion.js";
+import "./pages/docs/page-theming.js";
 import "./pages/docs/page-alerts.js";
 import "./pages/docs/page-breadcrumbs.js";
 import "./pages/docs/page-button.js";
@@ -47,6 +45,7 @@ router.setRoutes([
 			{ path: "/", redirect: "/docs/intro" },
 			{ path: "/intro", component: "page-intro" },
 			{ path: "/install", component: "page-install" },
+			{ path: "/theming", component: "page-theming" },
 			{ path: "/accordion", component: "page-accordion" },
 			{ path: "/alerts", component: "page-alerts" },
 			{ path: "/breadcrumbs", component: "page-breadcrumbs" },

@@ -22,6 +22,11 @@ export const SemaFooterStyles = css`
 		font-size: 0.875rem;
 		font-weight: 500;
 		transition: color 0.2s;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		gap: 0.3rem;
 	}
 
 	.footer-links a:hover {
@@ -36,5 +41,10 @@ export const SemaFooterStyles = css`
 		margin-top: 2rem;
 		padding-top: 2rem;
 		border-top: 1px solid #333;
+	}
+
+	.footer-copy a {
+		color: #6b7280;
+		text-decoration: none;
 	}
 `;

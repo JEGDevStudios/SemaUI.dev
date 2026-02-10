@@ -147,6 +147,9 @@ export class SemaDocs extends LitElement {
 							<li>
 								<sema-nav-item href="/docs/install">Instalación</sema-nav-item>
 							</li>
+							<li>
+								<sema-nav-item href="/docs/theming">Dark Mode</sema-nav-item>
+							</li>
 						</ul>
 					</div>
 

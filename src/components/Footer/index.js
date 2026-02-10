@@ -9,11 +9,11 @@ export class SemaFooter extends LitElement {
 			<footer>
 				<h2 class="logo" style="margin-bottom: 1rem;">SEMA UI</h2>
 				<p style="color: #9ca3af; font-size: 0.875rem;">
-					Minimalist building blocks for the modern web.
+					Construye bloques minimalistas para web modernas.
 				</p>
 				<ul class="footer-links">
-					<li><a href="/docs">Documentation</a></li>
-					<li><a href="/docs/accordion">Components</a></li>
+					<li><a href="/docs">Documentación</a></li>
+					<li><a href="/docs/accordion">Componentes</a></li>
 					<li>
 						<a href="https://github.com/JEGDevStudios/Sema-UI"
 							>GitHub
@@ -43,7 +43,8 @@ export class SemaFooter extends LitElement {
 					</li>
 				</ul>
 				<div class="footer-copy">
-					© ${new Date().getFullYear()} Sema UI. Built with Precision.
+					By <a href="https://www.jegdevstudios.com" title="Echo por JEG Dev Studios">JEG Dev Studios</a>
+					© ${new Date().getFullYear()} Sema UI. Construye con precision.
 				</div>
 			</footer>
 		`;

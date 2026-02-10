@@ -131,6 +131,8 @@ export class SemaButtonPage extends LitElement {
 			gap: 1rem;
 			flex-wrap: wrap;
 			align-items: center;
+			max-width: 400px;
+			width: 100%;
 		}
 	`;
 	constructor() {
@@ -259,17 +261,58 @@ export class SemaButtonPage extends LitElement {
 					<code>kind="link"</code> y proporciona una <code>url</code>.
 				</p>
 				<div class="preview">
-					<sema-button kind="link" url="https://google.com" target="_blank"
+					<sema-button
+						kind="link"
+						size="lg"
+						url="https://google.com"
+						target="_blank"
 						>Ir a Google</sema-button
 					>
 				</div>
-				<sema-code-snippet
-					>&lt;sema-button kind="link" url="https://google.com"
-					target="_blank"&gt; Ir a Google
-					&lt;/sema-button&gt;</sema-code-snippet
-				>
+				<sema-code-snippet>&lt;sema-button kind="link" size="lg" url="https://google.com" target="_blank"&gt; Ir a Google &lt;/sema-button&gt;</sema-code-snippet>
 
-				<h3>3. Tamaños (Size)</h3>
+				<h3>3. Modos (Modes)</h3>
+				
+				<p>
+					El componente ofrece variantes visuales para adaptarse a diferentes
+					contextos.
+				</p>
+
+				<h4>Nav Link</h4>
+
+				<p>
+					Para que el botón funcione como un hipervínculo para una barra de
+					navegación (<code>&lt;a&gt;</code>), define la propiedad
+					<code>mode="nav-link"</code>, <code>kind="link"</code> y proporciona
+					una <code>url</code>.
+				</p>
+
+				<div class="preview">
+					<sema-button kind="link" mode="nav-link" url="/docs"
+						>Docs</sema-button
+					>
+				</div>
+				<sema-code-snippet>&lt;sema-button kind="link" mode="nav-link" url="/docs"&gt; Docs &lt;/sema-button&gt;</sema-code-snippet>
+
+				<h4>Outline</h4>
+				<div class="preview">
+					<sema-button mode="outline">Outline</sema-button>
+				</div>
+				<sema-code-snippet>lt;sema-button mode="outline"&gt;Outline&lt;/sema-button&gt;</sema-code-snippet>
+
+				<h4>Ghost</h4>
+				<div class="preview">
+					<sema-button mode="ghost">Ghost</sema-button>
+				</div>
+				<sema-code-snippet>&lt;sema-button mode="ghost"&gt;Ghost&lt;/sema-button&gt;</sema-code-snippet>
+
+				<h4>Menu</h4>
+				<div class="preview">
+					<sema-button mode="menu">☰</sema-button>
+				</div>
+				<sema-code-snippet>&lt;sema-button mode="menu"&gt;☰&lt;/sema-button&gt;</sema-code-snippet>
+
+				<h3>4. Tamaños (Size)</h3>
 				<p>
 					Controla el ancho del botón mediante la propiedad <code>size</code>.
 				</p>
@@ -281,33 +324,54 @@ export class SemaButtonPage extends LitElement {
 				</ul>
 				<div class="preview">
 					<sema-button size="sm">Small</sema-button>
+				</div>
+
+				<sema-code-snippet>
+					&lt;!-- Botón pequeño --&gt; &lt;sema-button
+					size="sm"&gt;Small&lt;/sema-button&gt;
+				</sema-code-snippet>
+
+				<div class="preview">
 					<sema-button size="md">Medium</sema-button>
+				</div>
+
+				<sema-code-snippet>
+					&lt;!-- Botón mediano --&gt; &lt;sema-button
+					size="md"&gt;Medium&lt;/sema-button&gt;
+				</sema-code-snippet>
+
+				<div class="preview">
 					<sema-button size="lg">Large</sema-button>
 				</div>
+
+				<sema-code-snippet>
+					&lt;!-- Botón grande --&gt; &lt;sema-button
+					size="lg"&gt;Large&lt;/sema-button&gt;
+				</sema-code-snippet>
+
 				<div class="preview">
 					<sema-button size="full">Full Width</sema-button>
 				</div>
-				<sema-code-snippet
-					>&lt;!-- Botón pequeño --&gt; &lt;sema-button
-					size="sm"&gt;Small&lt;/sema-button&gt; &lt;!-- Botón ancho completo
-					--&gt; &lt;sema-button size="full"&gt;Full
-					Width&lt;/sema-button&gt;</sema-code-snippet
-				>
 
-				<h3>4. Tamaño de Fuente (Font Size)</h3>
+				<sema-code-snippet>
+					&lt;!-- Botón full width --&gt; &lt;sema-button size="full"&gt;Full
+					Width&lt;/sema-button&gt;
+				</sema-code-snippet>
+
+				<h3>5. Tamaño de Fuente (Font Size)</h3>
 				<p>
 					Puedes ajustar el tamaño del texto independientemente del tamaño del
 					botón usando <code>fontSize</code>.
 				</p>
 				<div class="preview">
-					<sema-button fontSize="xl">Texto Grande</sema-button>
+					<sema-button fontSize="xl" size="lg">Texto Grande</sema-button>
 				</div>
 				<sema-code-snippet
 					>&lt;sema-button fontSize="xl"&gt;Texto
 					Grande&lt;/sema-button&gt;</sema-code-snippet
 				>
 
-				<h3>5. Colores Personalizados</h3>
+				<h3>6. Colores Personalizados</h3>
 				<p>
 					Para aplicar tus propios colores, añade el atributo
 					<code>custom</code> (booleano) y define los colores de fondo y texto.
@@ -317,14 +381,38 @@ export class SemaButtonPage extends LitElement {
 					automáticamente para crear un efecto visual.
 				</p>
 				<div class="preview">
-					<sema-button custom="on" firstColor="#000000" secondaryColor="#FACC15"
+					<sema-button
+						size="lg"
+						custom="on"
+						firstColor="#000000"
+						secondaryColor="#FACC15"
 						>Negro y Amarillo</sema-button
 					>
 				</div>
 				<sema-code-snippet
-					>&lt;sema-button custom="on" firstColor="#000000"
+					>&lt;sema-button size="lg" custom="on" firstColor="#000000"
 					secondaryColor="#FACC15"&gt; Negro y Amarillo
 					&lt;/sema-button&gt;</sema-code-snippet
+				>
+
+				<h3>7. Border radius Personalizados</h3>
+				<p>
+					Para aplicar distintos border radius, añade el atributo
+					<code>rounded</code> (string) y define el tipo de redondeado que
+					quieres (sm, md, lg, xl, full y circle).
+				</p>
+				<div class="preview">
+					<sema-button size="lg" rounded="sm">Rounded SM</sema-button>
+					<sema-button size="lg" rounded="md">Rounded MD</sema-button>
+					<sema-button size="lg" rounded="lg">Rounded LG</sema-button>
+					<sema-button size="lg" rounded="xl">Rounded XL</sema-button>
+					<sema-button size="full" rounded="full">Rounded Full</sema-button>
+					<sema-button size="lg" rounded="circle">Circle</sema-button>
+				</div>
+				<sema-code-snippet
+					>&lt;sema-button size="lg" rounded="xl"&gt;Rounded
+					XL&lt;/sema-button&gt; &lt;sema-button size="lg"
+					rounded="circle"&gt;Circle&lt;/sema-button&gt;</sema-code-snippet
 				>
 			</section>
 
@@ -345,7 +433,8 @@ export class SemaButtonPage extends LitElement {
 							<td><code>String</code></td>
 							<td><code>primary</code></td>
 							<td>
-								Puedes alternar entre <code>outline</code> y <code>ghost</code>
+								Puedes alternar entre <code>outline</code>, <code>ghost</code>,
+								<code>nav-link</code> y <code>menu</code>
 							</td>
 						</tr>
 						<tr>
@@ -420,6 +509,15 @@ export class SemaButtonPage extends LitElement {
 							<td><code>String</code></td>
 							<td><code>""</code></td>
 							<td>Color de texto en modo personalizado.</td>
+						</tr>
+						<tr>
+							<td><code>rounded</code></td>
+							<td><code>String</code></td>
+							<td><code>"md"</code></td>
+							<td>
+								Redondeado del botón: <code>sm</code>, <code>md</code>,
+								<code>lg</code>, <code>xl</code>, <code>circle</code>.
+							</td>
 						</tr>
 					</tbody>
 				</table>
