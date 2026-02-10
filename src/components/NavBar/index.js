@@ -273,7 +273,7 @@ export class UiNavbar extends LitElement {
 		return html`
 			<header>
 				<a href="/" class="logo-container">
-					<img src="/src/assets/logo.webp" width="30" alt="Sema UI Logo" />
+					<img src="/favicon.ico" width="30" alt="Sema UI Logo" />
 					<span class="logo-text">SEMA UI</span>
 				</a>
 				<div class="search-wrapper">
