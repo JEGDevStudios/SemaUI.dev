@@ -1,0 +1,158 @@
+import { LitElement, html, css } from "lit";
+
+export class SemaCardInfo extends LitElement {
+	static properties = {
+		color: { type: String },
+		iconSize: { type: String },
+		size: { type: String, reflect: true },
+		theme: { type: String, reflect: true },
+		filled: { type: Boolean, reflect: true },
+	};
+
+	static styles = css`
+		:host {
+			display: block;
+			--card-primary: var(--primary, #da2b48);
+			--card-border: var(--border-color, #e5e7eb);
+			--card-bg: var(--bg-light, #ffffff);
+			--card-text: var(--text-main, #171212);
+			--icon-size: 32px;
+			height: 100%;
+		}
+
+		:host([theme="dark"]) {
+			--card-border: #333;
+			--card-bg: #121212;
+			--card-text: #ffffff;
+		}
+
+		.card {
+			background: var(--card-bg);
+			border: 1px solid var(--card-border);
+			border-radius: 4px;
+			padding: 1.5rem;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			box-sizing: border-box;
+			transition: border-color 0.2s ease;
+		}
+
+		.card:hover {
+			border-color: var(--card-primary);
+		}
+
+		/* Filled variant */
+		:host([filled]) .card {
+			background: var(--card-primary);
+			border-color: var(--card-primary);
+		}
+		:host([filled]) .title,
+		:host([filled]) .content,
+		:host([filled]) .icon {
+			color: #ffffff;
+			opacity: 1;
+		}
+
+		.icon {
+			color: var(--card-primary);
+			font-size: var(--icon-size);
+			margin-bottom: 0.5rem;
+			display: inline-block;
+			line-height: 1;
+		}
+
+		.title {
+			margin: 0.5rem 0;
+			font-weight: 900;
+			text-transform: uppercase;
+			color: var(--card-text);
+			font-size: 1rem;
+		}
+
+		.content {
+			font-size: 0.875rem;
+			color: var(--card-text);
+			opacity: 0.7;
+			margin: 0;
+			line-height: 1.5;
+		}
+
+		.content ::slotted(p) {
+			margin: 0;
+		}
+
+		/* Sizes */
+		:host([size="sm"]) .card {
+			padding: 1rem;
+		}
+		:host([size="sm"]) .title {
+			font-size: 0.75rem;
+		}
+		:host([size="sm"]) .icon {
+			margin-bottom: 0.25rem;
+		}
+
+		:host([size="lg"]) .card {
+			padding: 2rem;
+		}
+		:host([size="lg"]) .title {
+			font-size: 1.25rem;
+		}
+
+		:host([size="xl"]) .card {
+			padding: 3rem;
+		}
+		:host([size="xl"]) .title {
+			font-size: 1.5rem;
+		}
+
+		:host([size="full"]) {
+			width: 100%;
+		}
+	`;
+
+	constructor() {
+		super();
+		this.theme =
+			localStorage.getItem("theme") ||
+			(window.matchMedia("(prefers-color-scheme: dark)").matches
+				? "dark"
+				: "light");
+		this.size = "md";
+	}
+
+	connectedCallback() {
+		super.connectedCallback();
+		document.addEventListener("toggle-theme", this._handleThemeUpdate);
+	}
+
+	disconnectedCallback() {
+		super.disconnectedCallback();
+		document.removeEventListener("toggle-theme", this._handleThemeUpdate);
+	}
+
+	_handleThemeUpdate = () => {
+		this.theme = document.documentElement.getAttribute("data-theme") || "light";
+	};
+
+	render() {
+		const colorStyle = this.color ? `--card-primary: ${this.color};` : "";
+		const sizeStyle = this.iconSize ? `--icon-size: ${this.iconSize};` : "";
+
+		return html`
+			<div class="card" style="${colorStyle} ${sizeStyle}">
+				<span class="icon">
+					<slot name="icon"></slot>
+				</span>
+				<h4 class="title">
+					<slot name="title"></slot>
+				</h4>
+				<div class="content">
+					<slot></slot>
+				</div>
+			</div>
+		`;
+	}
+}
+customElements.define("sema-card-info", SemaCardInfo);

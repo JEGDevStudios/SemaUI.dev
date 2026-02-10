@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@jegdev/semaui": "^0.0.1-beta.7",
+    "@vaadin/router": "^2.0.1",
     "lit": "^3.3.1"
   },
   "devDependencies": {
