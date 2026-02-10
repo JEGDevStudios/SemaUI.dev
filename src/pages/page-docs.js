@@ -5,6 +5,7 @@ import "../components/SemaNavItem";
 export class SemaDocs extends LitElement {
 	static properties = {
 		theme: { type: String, reflect: true },
+		isSidebarOpen: { type: Boolean, state: true },
 	};
 
 	static styles = css`
@@ -87,13 +88,55 @@ export class SemaDocs extends LitElement {
 			border-radius: 4px;
 			font-family: monospace;
 		}
+
+		.mobile-toggle {
+			display: none;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 1rem;
+			background: var(--bg-light);
+			border-bottom: 1px solid var(--border-color);
+			cursor: pointer;
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			font-weight: 600;
+		}
+
+		.backdrop {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 40;
+			backdrop-filter: blur(2px);
+		}
+
 		@media (max-width: 768px) {
 			:host {
-				grid-template-columns: 1fr;
+				display: block;
 				height: auto;
 			}
 			aside {
 				display: none;
+				position: fixed;
+				top: 60px; /* Altura aproximada del navbar */
+				left: 0;
+				bottom: 0;
+				width: 280px;
+				background: var(--bg-light);
+				z-index: 50;
+				border-right: 1px solid var(--border-color);
+				box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+			}
+			aside.open {
+				display: block;
+			}
+			.mobile-toggle {
+				display: flex;
+			}
+			.backdrop.open {
+				display: block;
 			}
 		}
 	`;
@@ -128,10 +171,43 @@ export class SemaDocs extends LitElement {
 			}),
 		);
 	}
+
+	_toggleSidebar() {
+		this.isSidebarOpen = !this.isSidebarOpen;
+	}
+
+	_handleNavClick() {
+		if (window.innerWidth <= 768) {
+			this.isSidebarOpen = false;
+		}
+	}
+
 	render() {
 		return html`
-			<aside>
-				<nav>
+			<div class="mobile-toggle" @click="${this._toggleSidebar}">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line x1="3" y1="12" x2="21" y2="12"></line>
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<line x1="3" y1="18" x2="21" y2="18"></line>
+				</svg>
+				<span>Menú</span>
+			</div>
+			<div
+				class="backdrop ${this.isSidebarOpen ? "open" : ""}"
+				@click="${this._toggleSidebar}"
+			></div>
+			<aside class="${this.isSidebarOpen ? "open" : ""}">
+				<nav @click="${this._handleNavClick}">
 					<div class="nav-group">
 						<div class="nav-group-title">Getting Started</div>
 						<ul class="nav-list">

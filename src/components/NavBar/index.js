@@ -169,7 +169,7 @@ export class UiNavbar extends LitElement {
 			.search-container {
 				display: none;
 			}
-			.mobile-menu {
+			.mobile-menu{
 				display: block;
 			}
 		}
@@ -324,8 +324,8 @@ export class UiNavbar extends LitElement {
 					size="sm"
 					mode="menu"
 					custom="on"
-					firstColor="#fff"
-					secondaryColor="#da2b48"
+					firstColor="#da2b48"
+					secondaryColor="#fff"
 					class="mobile-menu"
 					@click="${this._toggleMenu}"
 				>
