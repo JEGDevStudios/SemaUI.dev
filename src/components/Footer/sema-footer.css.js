@@ -10,6 +10,7 @@ export const SemaFooterStyles = css`
 
 	.footer-links {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 1.5rem;
 		list-style: none;
 		padding: 0;
