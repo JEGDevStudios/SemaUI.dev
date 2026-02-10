@@ -12,10 +12,10 @@ export class SemaFooter extends LitElement {
 					Construye bloques minimalistas para web modernas.
 				</p>
 				<ul class="footer-links">
-					<li><a href="/docs" title="Ir a la página de documentación">Documentación</a></li>
-					<li><a href="/docs/accordion" title="Ir a la sección de componentes en la documentación">Componentes</a></li>
+					<li><a href="/docs" title="Ir a la página de documentación" target="_blanck">Documentación</a></li>
+					<li><a href="/docs/accordion" title="Ir a la sección de componentes en la documentación" target="_blanck">Componentes</a></li>
 					<li>
-						<a href="https://github.com/JEGDevStudios/Sema-UI" title="Ir al repositorio de github"
+						<a href="https://github.com/JEGDevStudios/Sema-UI" title="Ir al repositorio de github" target="_blanck"
 							>GitHub
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export class SemaFooter extends LitElement {
 						></a>
 					</li>
 					<li>
-						<a href="https://github.com/JEGDevStudios/Sema-UI" title="Ir a la página de NPM">
+						<a href="https://www.npmjs.com/package/@jegdev/semaui/" title="Ir a la página de NPM" target="_blanck">
 							NPM
 
 							<svg
