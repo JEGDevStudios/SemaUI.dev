@@ -223,7 +223,10 @@ export class PageHome extends LitElement {
 
 					<sema-card-info size="sm" filled>
 						<span slot="label" class="material-symbols-outlined">brush</span>
-						<span slot="title">100% Personalizable</span>
+						<span slot="title">100%</span>
+						<p>
+							 Personalizable
+						</p>
 					</sema-card-info>
 				</div>
 
